@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seguimiento del Mouse</title>
+    <style>
+        body { margin: 0; overflow: hidden; background: white; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <script>
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let mouseX = -10, mouseY = -10; // Posición inicial fuera de la pantalla
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // Limpiar canvas
+            ctx.fillStyle = "red"; // Color del cuadro
+            ctx.fillRect(mouseX - 5, mouseY - 5, 10, 10); // Dibujar el cuadro en la posición del mouse
+            requestAnimationFrame(draw);
+        }
+
+        canvas.addEventListener("mousemove", (event) => {
+            mouseX = event.clientX;
+            mouseY = event.clientY;
+        });
+
+        draw();
+    </script>
+</body>
+</html>
